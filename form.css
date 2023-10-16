@@ -1,0 +1,241 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+.logout{
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5rem;
+    padding: 10px;
+}
+
+.container-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    gap: 20rem;
+    margin: 0;
+    padding: 0;
+    margin-top: -2rem;
+    background: url(./images/bg-images/bg1.jpg);
+}
+
+.message-holder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-side {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.right-side {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button {
+    background-color: black;
+    color: aqua;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    align-items: center;
+    width: 400px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+.breadcrumbs{
+    background-color: #ccc;
+}
+
+.edit-button {
+    background-color: black;
+    color: aqua;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 100%;
+}
+
+select{
+    padding: 10px 2px;
+}
+
+button{
+    width: 100%;
+    height: 2.5rem;
+    font-size: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid rgb(240, 51, 208);
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination li {
+    margin: 5px;
+}
+
+/* .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+} */
+
+/* Style for the labels to be on the left */
+/* .form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px; /* Adjust the spacing as needed */
+} */
+
+/* .form-group label {
+    margin-right: 10px; /* Add some spacing between label and input */
+} */
+
+/* Style to center the dialog */
+dialog {
+    width: 100%; /* Adjust the width as needed */
+    margin: 0 auto;
+    text-align: center;
+}
+
+textarea{
+    width: 380px;
+    padding: 5px;
+}
+
+.table-holder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    flex-direction: column;
+}
+
+.activity-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+#first-page{
+    background: url("./images/bg-images/bg1.jpg");
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5rem;
+    text-shadow: 11px 11px 15px black;
+}
+#get-started{
+    border: 2px solid green;
+    color: green;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-weight: 700;
+    background-color: white;
+}
+
+#get-started:hover{
+    background-color: green;
+    color: white;
+}
+
+section{
+    width: 100%;
+    height: 100vh;
+}

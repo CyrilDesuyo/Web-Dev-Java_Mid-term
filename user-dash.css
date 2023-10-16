@@ -1,0 +1,26 @@
+.add-activity{
+    width: 600px;
+    height: 600px;
+    border: 1px solid aqua;
+}
+
+.show-all{
+    width: 600px;
+    height: 600px;
+    border: 1px solid aqua;
+}
+
+.set-activity{
+
+}
+
+.container-holder{
+    width: 100%;
+    height: max-content;
+    border: 5px solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5.5rem;
+}
