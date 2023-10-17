@@ -134,7 +134,7 @@ table {
 }
 
 table, th, td {
-    border: 1px solid rgb(240, 51, 208);
+    border: 1px solid rgb(0, 0, 0);
 }
 
 th, td {
