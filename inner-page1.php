@@ -75,11 +75,38 @@
               
               // Check if the user's name is set in the session
               if (isset($_SESSION["user_name"])) {
-                  echo "<h1 class='welcome-message1'>Welcome, " . $_SESSION["user_name"] . "!</h1>";
+                  echo "<h1 class='welcome-message1' id='username'>Welcome, " . $_SESSION["user_name"] . "!</h1>";
               } else {
-                  echo "<h6 class='welcome-message'>Welcome, Guest!</h6>";
+                  echo "<h6 class='welcome-message' id='username'>Welcome, Guest!</h6>";
               }
               ?>
+              <script>
+                const usernameElement = document.getElementById("username");
+                const colors = ["rgb(138,43,226)", "blue", "green", "orange"]; // Define the colors you want to cycle through
+                let colorIndex = 0;
+
+                // Function to change the color of the username
+                function changeUsernameColor() {
+                  usernameElement.style.color = colors[colorIndex];
+                  colorIndex = (colorIndex + 1) % colors.length; // Cycle through the colors
+                }
+
+                // Call the function to change the color every 2 seconds
+                setInterval(changeUsernameColor, 2000); // 2000 milliseconds = 2 seconds
+
+                usernameElement.style.animation = "fadeIn 1s";
+              </script>
+              <style>
+                /* Define the fadeIn animation */
+                @keyframes fadeIn {
+                  from {
+                    opacity: 0;
+                  }
+                  to {
+                    opacity: 1;
+                  }
+                }
+              </style>
 
               <a href="#add-activity" id="get-started">Get Started</a>
           </div>
@@ -97,7 +124,27 @@
         <div class="left-side">
           <h1>Add Activity</h1>
           <div class="message-holder">
-            <h5>Enter the details of your activity in the form and make sure to input a valid value!</h5>
+            <h5 id="typingText">Enter the details of your activity in the form and make sure to input a valid value!</h5>
+            <script>
+              const textElement = document.getElementById("typingText");
+              const textToType = textElement.textContent;
+              textElement.textContent = "";
+
+              let index = 0;
+
+              function typeText() {
+                if (index < textToType.length) {
+                  textElement.textContent += textToType.charAt(index);
+                  index++;
+                  setTimeout(typeText, 50); // Adjust the typing speed (50ms for example)
+                }
+              }
+
+              // Start typing when the page is loaded
+              document.addEventListener("DOMContentLoaded", function () {
+                typeText();
+              });
+            </script>
           </div>
         </div>
         <div class="right-side">

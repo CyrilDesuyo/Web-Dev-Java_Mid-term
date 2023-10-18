@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -245,9 +249,18 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <?php
+                // Check if the user's name is set in the session
+                if (isset($_SESSION["user_name"])) {
+                    echo "<h4 class='welcome-message1'>Welcome, " . $_SESSION["user_name"] . "!</h4>";
+                } else {
+                    echo "<h4 class='welcome-message'>Welcome, Guest!</h4>";
+                }
+                ?>
             </li>
+
+
+
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -557,30 +570,80 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
                 <div class="card-body">
-                  <h5 class="card-title">Sales <span>| Today</span></h5>
+                  <h5 class="card-title">Total Users</h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-cart"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
-                      <span class="text-success small pt-1 fw-bold">12%</span> <span
-                        class="text-muted small pt-2 ps-1">increase</span>
+                    <?php
+                      // Database connection parameters
+                      $host = "localhost";  // Change to your database host
+                      $username = "root";    // Change to your database username
+                      $password = "";        // Change to your database password
+                      $database = "register_form";  // Change to your database name
+
+                      // Create a database connection
+                      $mysqli = new mysqli($host, $username, $password, $database);
+
+                      // Check for connection errors
+                      if ($mysqli->connect_error) {
+                          die("Connection failed: " . $mysqli->connect_error);
+                      }
+
+                      // Count users with "user" role
+                      $roleToCountUser = "user";
+                      $queryUser = "SELECT COUNT(*) as userCount FROM users WHERE role = ?";
+                      $stmtUser = $mysqli->prepare($queryUser);
+                      $stmtUser->bind_param("s", $roleToCountUser);
+                      $stmtUser->execute();
+                      $stmtUser->bind_result($userCount);
+                      $stmtUser->fetch();
+                      $stmtUser->close();
+
+                      // Count users with "admin" role
+                      $roleToCountAdmin = "admin";
+                      $queryAdmin = "SELECT COUNT(*) as adminCount FROM users WHERE role = ?";
+                      $stmtAdmin = $mysqli->prepare($queryAdmin);
+                      $stmtAdmin->bind_param("s", $roleToCountAdmin);
+                      $stmtAdmin->execute();
+                      $stmtAdmin->bind_result($adminCount);
+                      $stmtAdmin->fetch();
+                      $stmtAdmin->close();
+
+                      // Calculate the total count
+                      $totalCount = $userCount + $adminCount;
+
+                      // Close the database connection
+                      $mysqli->close();
+                    ?>
+
+                      <h6 id="totalUsers"><?php echo $totalCount; ?></h6>
+                      <span class="text-success small pt-1 fw-bold" id="percentageIncrease"></span>
+                      <script>
+                          // JavaScript code to calculate daily increase percentage
+                          document.addEventListener("DOMContentLoaded", function() {
+                              // You can set these variables based on your data
+                              const previousTotalUsers = 100; // Replace with the previous day's total
+                              const currentTotalUsers = <?php echo $totalCount; ?>; // Replace with the current day's total
+
+                              // Calculate the increase percentage
+                              const increase = currentTotalUsers - previousTotalUsers;
+                              const percentageIncrease = (increase / previousTotalUsers) * 100;
+
+                              // Display the percentage increase
+                              const percentageIncreaseElement = document.getElementById("percentageIncrease");
+                              if (percentageIncrease >= 0) {
+                                  percentageIncreaseElement.textContent = `${percentageIncrease.toFixed(2)}% increase`;
+                                  percentageIncreaseElement.classList.add("text-success");
+                              } else {
+                                  percentageIncreaseElement.textContent = `${Math.abs(percentageIncrease).toFixed(2)}% decrease`;
+                                  percentageIncreaseElement.classList.add("text-danger");
+                              }
+                          });
+                      </script>
 
                     </div>
                   </div>
@@ -593,30 +656,69 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
                 <div class="card-body">
-                  <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                  <h5 class="card-title">Admin</h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>$3,264</h6>
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span
-                        class="text-muted small pt-2 ps-1">increase</span>
+                    <?php
+                      // Database connection parameters
+                      $host = "localhost";  // Change to your database host
+                      $username = "root";  // Change to your database username
+                      $password = "";  // Change to your database password
+                      $database = "register_form";  // Change to your database name
+
+                      // Create a database connection
+                      $mysqli = new mysqli($host, $username, $password, $database);
+
+                      // Check for connection errors
+                      if ($mysqli->connect_error) {
+                          die("Connection failed: " . $mysqli->connect_error);
+                      }
+
+                      // Role you want to count (change to "admin")
+                      $roleToCount = "admin";  // Change this to the role you want to count
+
+                      // Prepare and execute an SQL query to count users with the specified role
+                      $query = "SELECT COUNT(*) as userCount FROM users WHERE role = ?";
+                      $stmt = $mysqli->prepare($query);
+                      $stmt->bind_param("s", $roleToCount);
+                      $stmt->execute();
+                      $stmt->bind_result($userCount);
+                      $stmt->fetch();
+                      $stmt->close();
+
+                      // Close the database connection
+                      $mysqli->close();
+                    ?>
+
+                      <h6><?php echo $userCount; ?></h6>
+                      <span class="text-success small pt-1 fw-bold" id="adminPercentageIncrease"></span>
+                      <script>
+                          // JavaScript code to calculate daily increase percentage for "admin" role
+                          document.addEventListener("DOMContentLoaded", function() {
+                              // You can set these variables based on your data
+                              const previousAdminCount = 50; // Replace with the previous day's count for "admin" role
+                              const currentAdminCount = <?php echo $adminCount; ?>; // Replace with the current day's count for "admin" role
+
+                              // Calculate the increase percentage for "admin" role
+                              const increase = currentAdminCount - previousAdminCount;
+                              const percentageIncrease = (increase / previousAdminCount) * 100;
+
+                              // Display the percentage increase for "admin" role
+                              const adminPercentageIncreaseElement = document.getElementById("adminPercentageIncrease");
+                              if (percentageIncrease >= 0) {
+                                  adminPercentageIncreaseElement.textContent = `${percentageIncrease.toFixed(2)}% increase for admins`;
+                                  adminPercentageIncreaseElement.classList.add("text-success");
+                              } else {
+                                  adminPercentageIncreaseElement.textContent = `${Math.abs(percentageIncrease).toFixed(2)}% decrease for admins`;
+                                  adminPercentageIncreaseElement.classList.add("text-danger");
+                              }
+                          });
+                      </script>
 
                     </div>
                   </div>
@@ -630,30 +732,70 @@
 
               <div class="card info-card customers-card">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
                 <div class="card-body">
-                  <h5 class="card-title">Customers <span>| This Year</span></h5>
+                  <h5 class="card-title">Users</h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>1244</h6>
-                      <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                        class="text-muted small pt-2 ps-1">decrease</span>
+                    <?php
+                      // Database connection parameters
+                      $host = "localhost";  // Change to your database host
+                      $username = "root";  // Change to your database username
+                      $password = "";  // Change to your database password
+                      $database = "register_form";  // Change to your database name
+
+                      // Create a database connection
+                      $mysqli = new mysqli($host, $username, $password, $database);
+
+                      // Check for connection errors
+                      if ($mysqli->connect_error) {
+                          die("Connection failed: " . $mysqli->connect_error);
+                      }
+
+                      // Role you want to count
+                      $roleToCount = "user";  // Change this to the role you want to count
+
+                      // Prepare and execute an SQL query to count users with the specified role
+                      $query = "SELECT COUNT(*) as userCount FROM users WHERE role = ?";
+                      $stmt = $mysqli->prepare($query);
+                      $stmt->bind_param("s", $roleToCount);
+                      $stmt->execute();
+                      $stmt->bind_result($userCount);
+                      $stmt->fetch();
+                      $stmt->close();
+
+                      // Close the database connection
+                      $mysqli->close();
+                    ?>
+
+                    <h6><?php echo $userCount; ?></h6>
+                    <span class="text-success small pt-1 fw-bold" id="userPercentageIncrease"></span>
+                    <script>
+                        // JavaScript code to calculate daily increase percentage for "user" role
+                        document.addEventListener("DOMContentLoaded", function() {
+                            // You can set these variables based on your data
+                            const previousUserCount = 100; // Replace with the previous day's count for "user" role
+                            const currentUserCount = <?php echo $userCount; ?>; // Replace with the current day's count for "user" role
+
+                            // Calculate the increase percentage for "user" role
+                            const increase = currentUserCount - previousUserCount;
+                            const percentageIncrease = (increase / previousUserCount) * 100;
+
+                            // Display the percentage increase for "user" role
+                            const userPercentageIncreaseElement = document.getElementById("userPercentageIncrease");
+                            if (percentageIncrease >= 0) {
+                                userPercentageIncreaseElement.textContent = `${percentageIncrease.toFixed(2)}% increase for users`;
+                                userPercentageIncreaseElement.classList.add("text-success");
+                            } else {
+                                userPercentageIncreaseElement.textContent = `${Math.abs(percentageIncrease).toFixed(2)}% decrease for users`;
+                                userPercentageIncreaseElement.classList.add("text-danger");
+                            }
+                        });
+                    </script>
+
 
                     </div>
                   </div>
