@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/No Hustle.ico" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -44,9 +44,9 @@
     <div class="container d-flex justify-content-between align-items-center">
 
       <div id="logo">
-        <a href="index.html">USER DASHBOARD</a>
+        <a href="index.html"></a>
         <!-- Uncomment below if you prefer to use a text logo -->
-        <!--<h1><a href="index.html">Regna</a></h1>-->
+        <h1><a href="index.html">No <span style="color: #2dc997;">Hustle</span></a></h1>
       </div>
 
       <nav id="navbar" class="navbar">
@@ -122,9 +122,10 @@
     <section class="inner-page pt-4" id="add-activity">
       <div class="container-form">
         <div class="left-side">
-          <h1>Add Activity</h1>
+          <h1 style="color: aqua; font-weight: 900;">Add Activity</h1>
+          <br><br>
           <div class="message-holder">
-            <h5 id="typingText">Enter the details of your activity in the form and make sure to input a valid value!</h5>
+            <h5 id="typingText" style="color: white;">Enter the details of your activity in the form and make sure to input a valid values!</h5>
             <script>
               const textElement = document.getElementById("typingText");
               const textToType = textElement.textContent;
@@ -174,7 +175,8 @@
             <input type="text" id="location" name="location" required>
             <label for="ootd">OOTD:</label>
             <input type="text" id="ootd" name="ootd" required>
-            <button type="submit">Add Activity</button>
+            <br><br>
+            <button type="submit" style="font-size: 18px; height: 50px; font-weight: 800; box-shadow: 1px 2px 4px white">Add Activity</button>
           </form>
         </div>
 
@@ -203,7 +205,7 @@
     <!-- show all -->
     <section class="inner-page pt-4" id="show-activity">
       <div class="activity-container" id="activityContainer">
-       <h2>Activities</h2>
+       <h2 style="color: aqua; font-weight: 800">Activities</h2>
       <div class="table-holder">
         <table>
           <tr>
