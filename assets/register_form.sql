@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2023 at 02:06 PM
+-- Generation Time: Oct 18, 2023 at 06:40 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -90,10 +90,13 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `email`, `password`, `role`, `name`, `status`, `updatedAt`, `createdAt`, `gender`) VALUES
 (23, 'cy@gmail.com', '$2y$10$5f1UVRph9B6VF6cmx1UVHOegTl7dQ8AsjqV1boRRTHpktRxnVSAWG', 'admin', 'Cyril Desuyo', 'active', '2023-09-28 00:53:43', '2023-09-28 06:53:43', ''),
 (24, 'sam@gmail.com', '$2y$10$o/gNR.UEWKg0hXK8Jzi8duEq1l/euVAlULjn9pzPMkVWxQCoRhlCq', 'user', 'Sam', 'active', '2023-10-17 09:31:03', '2023-09-28 07:10:31', ''),
-(25, 'lokks@gmail.com', '$2y$10$kFXSHtwcQ1kIrCdDnovccOeu1a.sk5TrY9eOcCl3uuLNH1iJw/qC.', 'user', 'lokks', 'active', '2023-09-28 01:58:09', '2023-09-28 07:58:09', ''),
+(25, 'lokks@gmail.com', '$2y$10$kFXSHtwcQ1kIrCdDnovccOeu1a.sk5TrY9eOcCl3uuLNH1iJw/qC.', 'user', 'lokks', 'active', '2023-10-18 04:20:34', '2023-09-28 07:58:09', ''),
 (26, 'cyrildesuyo5@gmail.com', '$2y$10$vWvL9MlkWG0Fx0qeyE5Q1Owj.F8ydg4mJo8wcZ/5lc9nqBFi41At.', 'admin', 'cyfyy', 'active', '2023-10-13 01:39:53', '2023-10-13 07:39:53', 'male'),
 (27, 'cy1@gmail.com', '$2y$10$1gKozP.3bAUUGkHpus.4S.38FeIrDcrtXMvsyPMmQisjP.B0awCe2', 'admin', 'Cyril Desuyo', 'active', '2023-10-13 01:40:58', '2023-10-13 07:40:58', 'female'),
-(28, 'sam1@gmail.com', '$2y$10$lNxM272.oYmxjGY5D9hUcuUpMp4biAYHOBEUgPj5yM9da3wcPhPiy', 'admin', 'samantha ayieee', 'active', '2023-10-13 01:43:09', '2023-10-13 07:43:09', 'Prefer not to sa');
+(28, 'sam1@gmail.com', '$2y$10$lNxM272.oYmxjGY5D9hUcuUpMp4biAYHOBEUgPj5yM9da3wcPhPiy', 'admin', 'samantha ayieee', 'active', '2023-10-13 01:43:09', '2023-10-13 07:43:09', 'Prefer not to sa'),
+(29, 'cy2@gmail.com', '$2y$10$bXXRZfA1vgCZ7p4pvpP6j.DlFzr1WTdkVa75XYAaIyMYG4A.GmPJy', 'admin', 'Cyril DEs', 'active', '2023-10-17 22:05:24', '2023-10-18 04:05:24', 'male'),
+(30, 'cy3@gmail.com', '$2y$10$bM40QYRLxODOQnIppJWEe.DshD6E59wAYRvQWEd/rHMwsNrVBMmyq', 'user', 'Cyril DEs', 'active', '2023-10-17 22:11:15', '2023-10-18 04:11:15', 'Prefer not to sa'),
+(31, 'lowkey@gmail.com', '$2y$10$HXWhJQhLch.BbEo8kxpYsu1eM4J1.MvcAP9fRIFF6sQ2mFpMnEKLS', 'user', 'lowkey_viber', 'active', '2023-10-17 22:14:34', '2023-10-18 04:14:34', 'female');
 
 --
 -- Indexes for dumped tables
@@ -125,7 +128,7 @@ ALTER TABLE `activities`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
